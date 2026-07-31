@@ -17,11 +17,14 @@ test('watch preview exposes one accessible 480 by 480 watch surface', async () =
 })
 
 test('build emits the browser artifact with shared oracle and watch audio', async () => {
-  const [sourceOracle, publicOracle, sound] = await Promise.all([
+  const [sourceOracle, publicOracle, publicApp, sound] = await Promise.all([
     readFile(join(root, 'core/oracle.js')),
     readFile(join(root, 'public/core/oracle.js')),
+    readFile(join(root, 'public/app.js'), 'utf8'),
     readFile(join(root, 'public/sounds/mystical-reveal.mp3')),
   ])
   assert.deepEqual(publicOracle, sourceOracle)
+  assert.match(publicApp, /from '\.\/core\/oracle\.js'/)
+  assert.doesNotMatch(publicApp, /from '\.\.\/core\/oracle\.js'/)
   assert.ok(sound.length > 1000)
 })
