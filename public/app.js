@@ -1,4 +1,4 @@
-import { createOracle } from '../core/oracle.js'
+import { createOracle } from './core/oracle.js'
 
 export function createPreviewController({ oracle, render, schedule, vibrate, playSound }) {
   let busy = false
