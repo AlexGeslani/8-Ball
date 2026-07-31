@@ -1,45 +1,91 @@
-# 8 Ball
+# 8 Ball for Amazfit Active Max
 
-An offline, tap-first 8 Ball Mini Program for the Amazfit Active Max, with a browser-based interaction preview for TheArkLab.
+An offline, tap-first Zepp OS Mini Program—and an end-to-end experiment in building, testing, previewing, packaging, and delivering an original app to a physical Amazfit Active Max.
 
-## Surfaces
+Built as a reusable foundation for future watch-app development: one shared answer engine powers the native watch experience and a browser interaction preview, while automated tests and GitHub Actions verify each change before device testing.
 
-- **Watch:** native Zepp OS Mini Program targeting Active Max (`genevaw`, 480×480)
-- **Development preview:** `http://8ball.watch.lan`
-- **Source:** private `Vector-Sigma-Works/8-Ball`
+## Screenshots
 
-The browser preview mirrors the visible layout, shared answer pool, reveal timing, vibration request, and mystical reveal sound. It is not a Zepp OS runtime emulator; physical watch testing remains authoritative for rendering, haptics, audio volume, lifecycle, and performance.
+| Ready to ask | Answer revealed |
+|---|---|
+| ![Round Active Max preview showing the 8 Ball app ready for a yes-or-no question](docs/screenshots/8-ball-ready.png) | ![Round Active Max preview showing a completed 8 Ball answer and ask-again control](docs/screenshots/8-ball-answer.png) |
 
-## Development flow
+## Highlights
+
+- Native Zepp OS Mini Program for the **Amazfit Active Max** (`genevaw`, 480×480)
+- 20 original local answers with no immediate repetition
+- Short suspense phase before each reveal
+- Native vibration request and an original local mystical sound
+- Browser interaction preview using the same answer logic as the watch
+- Deterministic Node test suite and Zeus package build in GitHub Actions
+- Offline by design: no network requests, microphone, accounts, ads, analytics, or history
+
+## End-to-end delivery experiment
+
+This project exercises the complete development path needed for future Zepp OS apps:
 
 ```text
-8ball.watch.lan → dev → PR to main → version tag → .zab release
+shared application logic
+        ↓
+native watch UI + browser interaction preview
+        ↓
+automated tests and Zeus package build
+        ↓
+Zeus preview QR on the paired phone
+        ↓
+physical Amazfit Active Max acceptance
+        ↓
+dev → pull request → main → tagged .zab release
 ```
 
-`dev` is the integration branch served by TheArkLab. `main` is release-ready source and receives changes only through accepted promotion.
+The browser preview provides fast visual and interaction feedback, but it is deliberately not presented as a Zepp OS runtime emulator. Physical-watch testing remains authoritative for native rendering, touch geometry, haptics, sound volume, lifecycle behavior, and performance.
 
-## Commands
+## Interaction
+
+1. Think of or ask a yes-or-no question.
+2. Tap **TAP TO ASK**.
+3. Wait through the short consultation phase.
+4. Read the answer, then tap again.
+
+## Development
+
+### Prerequisites
+
+- Node.js 20
+- Zepp OS Zeus CLI 1.9.3
+
+### Verify and build
 
 ```bash
 npm run build:web
 npm test
-npx --yes -p node@20 -c 'zeus build'
+zeus build
 ```
 
-Authenticated physical preview generation is performed locally on The Ark; expiring QR codes are not durable release artifacts.
+The generated browser artifact is written to `public/` and can be served by any static web server. Authenticated `zeus preview` QR generation stays local because preview sessions expire and require the developer's Zepp account.
 
-## Layout
+## Project structure
 
 ```text
-core/                  shared oracle behavior
-page/genevaw/          Zepp OS watch UI
-assets/genevaw.r/      watch icon and reveal audio
-web/                   browser-preview source
-public/                generated static TheArkLab artifact
-test/                  Node test suite
-scripts/build-web.mjs   deterministic browser build
+app.json                 Zepp OS manifest and Active Max targets
+app.js                   application lifecycle
+page/genevaw/            native 480×480 watch interface
+assets/genevaw.r/        app icon and reveal sound
+core/                    shared oracle behavior
+web/                     browser-preview source
+public/                  generated static preview artifact
+test/                    behavior and contract tests
+scripts/build-web.mjs     deterministic browser build
+.github/workflows/       CI and tagged-release automation
 ```
 
-## Privacy and scope
+## Release model
 
-The app is offline and contains no microphone, speech recognition, network requests, accounts, ads, analytics, or history.
+- `dev` is the integration branch used for iterative preview and watch candidates.
+- `main` contains accepted, release-ready source.
+- Version tags build a `.zab` package and SHA-256 checksum manifest.
+- Expiring Zeus preview QR codes are intentionally not committed or published as releases.
+
+## Current status
+
+Version `0.2.0` targets Zepp OS 5.0 / API level 4.2 on the Amazfit Active Max. Automated oracle, package-contract, and browser-interaction tests are passing; native watch behavior remains subject to the physical-device acceptance gate described above.
