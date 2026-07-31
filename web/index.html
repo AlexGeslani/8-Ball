@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05090d">
+  <title>8 Ball · Active Max Preview</title>
+  <link rel="icon" href="./images/app-icon.png">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body data-phase="ready">
+  <main class="lab-shell">
+    <section class="watch-stage" aria-labelledby="preview-title">
+      <header class="stage-heading">
+        <p class="eyebrow">ACTIVE MAX · 480 × 480</p>
+        <h1 id="preview-title">8 Ball watch preview</h1>
+      </header>
+
+      <div class="watch" aria-label="Amazfit Active Max interaction preview">
+        <div class="crown" aria-hidden="true"></div>
+        <div class="watch-face" data-watch-face>
+          <div class="watch-content">
+            <p class="app-title">8 BALL</p>
+            <p class="prompt" data-prompt>THINK OR ASK A YES/NO QUESTION</p>
+            <div class="oracle-window">
+              <p class="answer" data-answer aria-live="polite">READY</p>
+              <button class="ask-button" data-action type="button">TAP TO ASK</button>
+            </div>
+            <p class="watch-note">NO LISTENING · FOR ENTERTAINMENT ONLY</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="status" data-status aria-live="polite">8 Ball ready</p>
+    </section>
+
+    <aside class="preview-notes" aria-label="Preview limitations">
+      <img src="./images/app-icon.png" width="72" height="72" alt="8 Ball app icon">
+      <div>
+        <h2>Browser interaction preview</h2>
+        <p>This mirrors the watch layout, answer logic, reveal timing, vibration request, and mystical sound.</p>
+        <p>The physical Active Max remains authoritative for Zepp OS rendering, haptics, audio volume, and performance.</p>
+      </div>
+    </aside>
+  </main>
+</body>
+</html>

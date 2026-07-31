@@ -1,0 +1,26 @@
+{
+  "configVersion": "v3",
+  "app": {
+    "appId": 2026073101,
+    "appName": "8 Ball",
+    "appType": "app",
+    "version": { "code": 2, "name": "0.2.0" },
+    "vender": "Alphatrion",
+    "description": "A private, offline yes-or-no oracle for Amazfit Active Max.",
+    "icon": "images/app-icon.png"
+  },
+  "permissions": [],
+  "runtime": {
+    "apiVersion": { "compatible": "4.0", "target": "4.0", "minVersion": "4.0" }
+  },
+  "targets": {
+    "genevaw": {
+      "module": { "page": { "pages": ["page/genevaw/index"] } },
+      "platforms": [{ "st": "r" }],
+      "designWidth": 480
+    }
+  },
+  "i18n": { "en-US": { "name": "8 Ball" } },
+  "defaultLanguage": "en-US",
+  "debug": true
+}

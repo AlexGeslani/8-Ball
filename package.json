@@ -1,0 +1,9 @@
+{
+  "name": "8-ball",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:web": "node scripts/build-web.mjs",
+    "test": "node --test"
+  }
+}
