@@ -4,7 +4,7 @@ An offline, tap-first Zepp OS Mini Program—and an end-to-end experiment in bui
 
 Built as a reusable foundation for future watch-app development: one shared answer engine powers the native watch experience and a browser interaction preview, while automated tests and GitHub Actions verify each change before device testing.
 
-**Live browser preview:** [Open 8 Ball](https://vector-sigma-works.github.io/8-Ball/)
+**Live browser preview:** [Open 8 Ball](https://alexgeslani.github.io/8-Ball/)
 
 ## Screenshots
 
