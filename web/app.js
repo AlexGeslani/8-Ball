@@ -38,6 +38,8 @@ function mountBrowserPreview() {
       prompt.textContent = state.prompt
       answer.textContent = state.answer
       action.textContent = state.action
+      action.disabled = state.phase === 'consulting'
+      action.setAttribute('aria-busy', String(state.phase === 'consulting'))
       status.textContent = state.phase === 'consulting' ? 'Oracle consultation in progress' : state.phase === 'answer' ? `Oracle answer: ${state.answer}` : '8 Ball ready'
     },
     schedule: window.setTimeout.bind(window),
