@@ -9,9 +9,10 @@ test('Ask button is disabled and exposes busy state only during consultation', a
     setAttribute(name, value) { this.attributes[name] = value },
     addEventListener(name, fn) { handlers.set(name, fn) },
   }]))
-  const old = { document: globalThis.document, window: globalThis.window, Audio: globalThis.Audio }
+  const old = { document: globalThis.document, window: globalThis.window, Audio: globalThis.Audio, navigator: globalThis.navigator }
   let mount
   try {
+    if (typeof globalThis.navigator === 'undefined') globalThis.navigator = {}
     globalThis.document = { body: { dataset: {} }, querySelector(selector) {
       return nodes[selector.slice(6, -1)]
     } }
@@ -32,6 +33,7 @@ test('Ask button is disabled and exposes busy state only during consultation', a
     assert.equal(nodes.action.textContent, 'TAP TO ASK AGAIN')
   } finally {
     for (const [key, value] of Object.entries(old)) {
+      if (globalThis[key] === value) continue
       if (value === undefined) delete globalThis[key]
       else globalThis[key] = value
     }
